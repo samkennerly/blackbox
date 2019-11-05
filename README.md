@@ -1,5 +1,7 @@
 # blackbox
 
+## abstract
+
 [Black](https://github.com/psf/black)
 automatically formats Python code.
 
@@ -7,6 +9,10 @@ automatically formats Python code.
 [shell script](https://en.wikipedia.org/wiki/Shell_script)
 which runs Black in a
 [Docker container](https://docs.docker.com/get-started/).
+
+Disclaimer:
+Blackbox is not an official project of the
+[Python Software Foundation](https://github.com/psf).
 
 ## basics
 
@@ -68,11 +74,11 @@ or
 ### installation
 1. Copy the
 [blackbox](blackbox)
-file to your computer.
-2. Ensure the `blackbox` file is
+script.
+2. Ensure the script is
 [executable](https://en.wikipedia.org/wiki/Chmod).
-3. Consider moving `blackbox` to a folder on the system
-[PATH](https://en.wikipedia.org/wiki/PATH_(variable)).
+3. Consider adding the script to your system
+[PATH](https://en.wikipedia.org/wiki/PATH_%28variable%29).
 
 ### uninstallation
 1. Delete the `blackbox` script: `rm path/to/blackbox`
@@ -81,7 +87,7 @@ file to your computer.
 
 ## examples
 
-Inspect `example/script.py`, but do not modify anything:
+Inspect `example/script.py`, but do not modify any files:
 ```bash
 blackbox --check example/script.py
 ```
