@@ -1,12 +1,9 @@
 #!/usr/bin/env sh
-
+#
 # Autoformat Python with black.
-# Examples:
-#  blackbox test/clean.py
-#  blackbox path/to/my/project/*.py
+# For details: blackbox --help
 
 image='blackbox:latest'
-
 docker build --tag $image - <<Dockerfile
 FROM python:3
 LABEL description="Autoformat Python code with Black"
@@ -18,5 +15,4 @@ WORKDIR /context
 
 ENTRYPOINT ["black"]
 Dockerfile
-
 docker run --interactive --tty --rm --volume "$(pwd):/context" $image "$@"
