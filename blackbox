@@ -19,4 +19,4 @@ WORKDIR /context
 ENTRYPOINT ["black"]
 Dockerfile
 
-docker run --interactive --tty --volume "$(pwd):/context" $image "$@"
+docker run --interactive --tty --rm --volume "$(pwd):/context" $image "$@"
