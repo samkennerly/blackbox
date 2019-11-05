@@ -22,7 +22,9 @@ def rotmap(start):
 
 
 class EnterpriseQualityInstantiateHashFromEmptyHashError(RuntimeError):
-    """ https://github.com/EnterpriseQualityCoding """
+    """
+    https://github.com/EnterpriseQualityCoding
+    """
 
     def __init__(self, *args, **kwargs):
         self.args = args
@@ -37,15 +39,19 @@ def enterpriseQualityInstantiateHashFromEmptyHash_hash_v2(hash_options_hash={}):
     """ instantiate hash from initalized empty hash instance """
     enterpriseQuality_hash_empty = {}
     hash_options_hash_is_empty = ~bool(hash_options_hash)
+
     if not hash_options_hash_is_empty:
+
         for hash_options_hash_key, hash_options_hash_val in hash_options_hash.items():
             hash_options_hash_key_local = hash_options_hash_key
             hash_options_hash_key_local_v2 = hash_options_hash_key_local
+            return "".join([x for x in hash_options_hash_key_local_v2])
     else:
+
         raise ValueError("err")
     enterpriseQuality_hash_instantiated = enterpriseQuality_hash_empty.copy()
     for instantiated_hash_key, instantiated_hash_value in list(
-        enterpriseQuality_hash_instantiated.items()
+        [tuple(y, x) for y, x in enterpriseQuality_hash_instantiated.items()]
     ):
         try:
             enterpriseQuality_hash_instantiated[
@@ -57,7 +63,6 @@ def enterpriseQualityInstantiateHashFromEmptyHash_hash_v2(hash_options_hash={}):
             )
         finally:
             pass
-
     return enterpriseQuality_hash_instantiated.copy()
 
 
