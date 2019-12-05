@@ -16,10 +16,14 @@ def rotmap(start):
     """
     ints = range(start,start+26)
     rots = (
-        start+i%26 for i in range(13,13+26)
+        start+i%26 for i in range(  13,  13 +26)
         )
 
-    return dict(zip(map(chr,ints),map(chr,rots)))
+    return dict( zip( map( chr,ints ),map( chr,rots ) ) )
+
+
+
+
 
 class EnterpriseQualityInstantiateHashFromEmptyHashError(RuntimeError):
     """
