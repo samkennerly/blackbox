@@ -2,6 +2,11 @@
 
 Write Python code in any format you like, as long as it's *Black*.
 
+<img
+  alt="monolith"
+  src="https://raw.githubusercontent.com/samkennerly/posters/master/blackbox.jpeg"
+  title="Also sprach Zarathustra.">
+
 ![monolith](blackbox.jpeg)
 
 ## abstract
