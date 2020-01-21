@@ -7,8 +7,6 @@ Write Python code in any format you like, as long as it's *Black*.
   src="https://raw.githubusercontent.com/samkennerly/posters/master/blackbox.jpeg"
   title="Also sprach Zarathustra.">
 
-![monolith](blackbox.jpeg)
-
 ## abstract
 
 **Blackbox** is a [shell script] which runs [Black] in a [Docker container].
