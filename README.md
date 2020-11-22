@@ -1,67 +1,73 @@
 # blackbox
 
-Write Python code in any format you like, as long as it's *Black*.
+Write Python code in any format you like, as long as it's [Black].
 
 <img
   alt="monolith"
   src="https://raw.githubusercontent.com/samkennerly/posters/master/blackbox.jpeg"
   title="Also sprach Zarathustra.">
 
+[Black]: https://github.com/psf/black
+
+
 ## abstract
 
 **Blackbox** is a [shell script] which runs [Black] in a [Docker container].
 
+I use Black to force my Python code to comply with common style guidelines. I don't want to install Black in all my Python projects, so I run it in a container.
+
 Disclaimer: Blackbox is not an official [PSF] project.
-It's just a convenience script.
 
 [shell script]: https://en.wikipedia.org/wiki/Shell_script
-[Black]: https://github.com/psf/black
 [Docker container]: https://docs.docker.com/get-started/
 [PSF]: https://github.com/psf
 
+
 ## basics
 
-Blackbox does several things:
+The `blackbox` script does several things:
 
 - Download an official Python [base image].
-- Build a [Docker image] named `blackbox:latest` with `black` installed.
-- Run a [self-destructing] container from the `blackbox:latest` image.
-- [Mount] the current [working directory] so the container can access it.
-- Run `black` and pass any extra [arguments] to it.
+- Build a [Docker image] named `blackbox:latest`.
+- Run a [self-destructing] container from that image.
+- [Mount] the [current folder] into the container.
+- Run `black` in the container.
 
-The `blackbox` script rebuilds the `blackbox:latest` image every time it is run.
-On the first run, Docker may spend a few minutes downloading things.
-Subsequent runs should only take a few seconds.
+On the first run, Docker may need a few minutes to build an image. Subsequent runs should be much faster.
 
 [base image]: https://hub.docker.com/_/python
 [Docker image]: https://docs.docker.com/get-started/
 [self-destructing]: https://docs.docker.com/engine/reference/run/#clean-up---rm
 [Mount]: https://docs.docker.com/storage/bind-mounts/
-[working directory]: https://en.wikipedia.org/wiki/Working_directory
-[arguments]: https://en.wikipedia.org/wiki/Command-line_interface#Arguments
+[current folder]: https://en.wikipedia.org/wiki/Working_directory
+
 
 ## commands
 
-`blackbox` is the only command.
-See Black's [docs] or run `blackbox --help` for options.
-
-Blackbox creates a Docker image on your machine.
-To see all Docker images:
+Run `blackbox [PATH]` to autoformat a file:
 ```bash
-docker image ls
+blackbox test/clean.py
 ```
 
-Blackbox should clean up after itself.
-If it does not, then remove any [leftovers] by running:
+Any extra [arguments] are passed to Black. See Black's [docs] or run `blackbox --help` to see all possible arguments.
+
+Blackbox creates a container which should delete itself as soon as `Black` finishes. If it does not, then delete it with this command:
 ```bash
-docker system prune
+docker rm --force blackbox
 ```
 
-See [github.com/samkennerly/dockerbash] for other common Docker commands.
+To see all Docker containers on your machine:
+```bash
+docker ps --all
+```
 
+For other common Docker commands, see [github.com/samkennerly/dockerbash].
+
+[arguments]: https://en.wikipedia.org/wiki/Command-line_interface#Arguments
 [docs]: https://black.readthedocs.io/en/stable/installation_and_usage.html#command-line-options
-[Docker leftovers]: https://docs.docker.com/engine/reference/commandline/system_prune/
+[leftovers]: https://docs.docker.com/engine/reference/commandline/system_prune/
 [github.com/samkennerly/dockerbash]: https://github.com/samkennerly/dockerbash
+
 
 ## dependencies
 
@@ -71,38 +77,41 @@ See [github.com/samkennerly/dockerbash] for other common Docker commands.
 [Mac]: https://docs.docker.com/v17.12/docker-for-mac/install/
 [Windows]: https://docs.docker.com/docker-for-windows/install/
 
+
 ### installation
 
-1. Copy the [blackbox] script.
-2. Ensure the script is [executable].
-3. Consider adding the script to your system [PATH].
+1. Copy the [blackbox] script to any folder on machine.
+2. Add the script to your system [PATH] if you want to.
+3. Ensure the `blackbox` script is [executable].
 
 [blackbox]: blackbox
 [executable]: https://en.wikipedia.org/wiki/Chmod
 [PATH]: https://en.wikipedia.org/wiki/PATH_%28variable%29
 
+
 ### uninstallation
 
-1. Delete the `blackbox` script: `rm path/to/blackbox`
-2. Delete the `blackbox` image: `docker rmi blackbox`
-3. Delete any Docker leftovers: `docker system prune`
+1. Delete the `blackbox` script.
+2. Delete the `blackbox` Docker image: `docker rmi blackbox`
+
 
 ## examples
 
-Inspect `example/script.py`, but do not modify any files:
+Format and **overwrite** every relevant file in the current folder:
 ```bash
-blackbox --check example/script.py
-```
-
-Format and **overwrite** `example/script.py`:
-```bash
-blackbox example/script.py
+blackbox .
 ```
 
 Format and **overwrite** all `.py` files in `example/folder`:
 ```bash
 blackbox example/folder/*.py
 ```
+
+Inspect `example/script.py`, but do not change any files:
+```bash
+blackbox --check example/script.py
+```
+
 
 ## faq
 
@@ -114,6 +123,6 @@ Blackbox comes in any color you like as long as it's [black].
 
 ### Why rebuild the image on every run?
 
-Rebuilding wastes a few seconds of computing time to conserve [brain].
+Rebuilding wastes a few seconds of computing time, but it saves [brain].
 
-[cognitive effort]: https://en.wikipedia.org/wiki/Don%27t_Make_Me_Think
+[brain]: https://en.wikipedia.org/wiki/Don%27t_Make_Me_Think
