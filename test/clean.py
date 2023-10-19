@@ -6,7 +6,7 @@ from this import s as S
 
 
 def rot13(text):
-    """ str: Encrypt text badly. """
+    """str: Encrypt text badly."""
     rot = {**rotmap(65), **rotmap(97)}.get
     return "".join(rot(x, x) for x in text)
 
@@ -36,18 +36,16 @@ class EnterpriseQualityInstantiateHashFromEmptyHashError(RuntimeError):
 
 
 def enterpriseQualityInstantiateHashFromEmptyHash_hash_v2(hash_options_hash={}):
-    """ instantiate hash from initalized empty hash instance """
+    """instantiate hash from initalized empty hash instance"""
     enterpriseQuality_hash_empty = {}
     hash_options_hash_is_empty = ~bool(hash_options_hash)
 
     if not hash_options_hash_is_empty:
-
         for hash_options_hash_key, hash_options_hash_val in hash_options_hash.items():
             hash_options_hash_key_local = hash_options_hash_key
             hash_options_hash_key_local_v2 = hash_options_hash_key_local
             return "".join([x for x in hash_options_hash_key_local_v2])
     else:
-
         raise ValueError("err")
     enterpriseQuality_hash_instantiated = enterpriseQuality_hash_empty.copy()
     for instantiated_hash_key, instantiated_hash_value in list(
