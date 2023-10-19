@@ -1,22 +1,22 @@
 # blackbox
 
-Write Python code in any format you like, as long as it's [Black].
+Write Python code in any style you like, as long as it's [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 <img
   alt="monolith"
   src="https://raw.githubusercontent.com/samkennerly/posters/master/blackbox.jpeg"
   title="Also sprach Zarathustra.">
 
-[Black]: https://github.com/psf/black
-
 
 ## abstract
 
 **Blackbox** is a [shell script] which runs [Black] in a [Docker container].
 
-Black is a program which forces Python code to comply with common style guidelines.
+Black is an autoformatter which enforces strict Python style guidelines.
 
 I like Black, but I don't want to install it in all of my Python projects, so I run it in a container.
+
+[Black]: https://github.com/psf/black
 
 [shell script]: https://en.wikipedia.org/wiki/Shell_script
 [Docker container]: https://docs.docker.com/get-started/
@@ -43,7 +43,7 @@ The first time this script is run, Docker may need a few minutes to build an ima
 
 ## commands
 
-Run `blackbox [PATH]` to reformat and **overwrite** the file `test/clean.py`:
+Reformat and **overwrite** the file `test/clean.py`:
 ```bash
 blackbox test/clean.py
 ```
@@ -66,7 +66,7 @@ docker ps --all
 See the [dockerbash] repo for my personal favorite Docker commands.
 
 [arguments]: https://en.wikipedia.org/wiki/Command-line_interface#Arguments
-[docs]: https://black.readthedocs.io/en/stable/installation_and_usage.html#command-line-options
+[docs]: https://black.readthedocs.io/en/stable/index.html
 [leftovers]: https://docs.docker.com/engine/reference/commandline/system_prune/
 [dockerbash]: https://github.com/samkennerly/dockerbash
 
@@ -79,17 +79,13 @@ See the [dockerbash] repo for my personal favorite Docker commands.
 [Mac]: https://docs.docker.com/v17.12/docker-for-mac/install/
 [Windows]: https://docs.docker.com/docker-for-windows/install/
 
-
 ### installation
 
 1. Copy the [blackbox] script to any folder on machine.
-2. Add the script to your system [PATH] if you want to.
-3. Ensure the `blackbox` script is [executable].
+2. Ensure the `blackbox` script is [executable].
 
 [blackbox]: blackbox
 [executable]: https://en.wikipedia.org/wiki/Chmod
-[PATH]: https://en.wikipedia.org/wiki/PATH_%28variable%29
-
 
 ### uninstallation
 
@@ -119,9 +115,7 @@ blackbox --check example/script.py
 
 ### Where are the configuration files?
 
-Blackbox comes in any color you like as long as it's [black].
-
-[black]: https://black.readthedocs.io/en/stable/the_black_code_style.html
+There are no configuration files.
 
 ### Why rebuild the image on every run?
 
