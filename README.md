@@ -14,13 +14,12 @@ Write Python code in any format you like, as long as it's [Black].
 
 **Blackbox** is a [shell script] which runs [Black] in a [Docker container].
 
-I use Black to force my Python code to comply with common style guidelines. I don't want to install Black in all my Python projects, so I run it in a container.
+Black is a program which forces Python code to comply with common style guidelines.
 
-Disclaimer: Blackbox is not an official [PSF] project.
+I like Black, but I don't want to install it in all of my Python projects, so I run it in a container.
 
 [shell script]: https://en.wikipedia.org/wiki/Shell_script
 [Docker container]: https://docs.docker.com/get-started/
-[PSF]: https://github.com/psf
 
 
 ## basics
@@ -33,7 +32,7 @@ The `blackbox` script does several things:
 - [Mount] the [current folder] into the container.
 - Run `black` in the container.
 
-On the first run, Docker may need a few minutes to build an image. Subsequent runs should be much faster.
+The first time this script is run, Docker may need a few minutes to build an image.
 
 [base image]: https://hub.docker.com/_/python
 [Docker image]: https://docs.docker.com/get-started/
@@ -44,14 +43,17 @@ On the first run, Docker may need a few minutes to build an image. Subsequent ru
 
 ## commands
 
-Run `blackbox [PATH]` to autoformat a file:
+Run `blackbox [PATH]` to reformat and **overwrite** the file `test/clean.py`:
 ```bash
 blackbox test/clean.py
 ```
 
-Any extra [arguments] are passed to Black. See Black's [docs] or run `blackbox --help` to see all possible arguments.
+Any extra [arguments] are passed to Black. To see all options, read the [docs] or run:
+```bash
+blackbox --help
+```
 
-Blackbox creates a container which should delete itself as soon as `Black` finishes. If it does not, then delete it with this command:
+Dockerbash should delete its own container. If that doesn't work, this will delete it:
 ```bash
 docker rm --force blackbox
 ```
@@ -61,12 +63,12 @@ To see all Docker containers on your machine:
 docker ps --all
 ```
 
-For other common Docker commands, see [github.com/samkennerly/dockerbash].
+See the [dockerbash] repo for my personal favorite Docker commands.
 
 [arguments]: https://en.wikipedia.org/wiki/Command-line_interface#Arguments
 [docs]: https://black.readthedocs.io/en/stable/installation_and_usage.html#command-line-options
 [leftovers]: https://docs.docker.com/engine/reference/commandline/system_prune/
-[github.com/samkennerly/dockerbash]: https://github.com/samkennerly/dockerbash
+[dockerbash]: https://github.com/samkennerly/dockerbash
 
 
 ## dependencies
@@ -107,7 +109,7 @@ Format and **overwrite** all `.py` files in `example/folder`:
 blackbox example/folder/*.py
 ```
 
-Inspect `example/script.py`, but do not change any files:
+Inspect `example/script.py`, but do not modify any files:
 ```bash
 blackbox --check example/script.py
 ```
